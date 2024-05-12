@@ -8,6 +8,10 @@ import {
 import Root from './layouts/Root/Root.jsx';
 import Home from './pages/Home/Home.jsx';
 import MapLocation from './pages/Home/MapLocation/MapLocation.jsx';
+import AuthProvider from './providers/AuthProvider/AuthProvider.jsx';
+import PrivateRoute from './routes/PrivateRoute/PrivateRoute.jsx';
+import Login from './pages/Login/Login.jsx';
+import Register from './pages/Register/Register.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +25,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/map-location",
-        element: <MapLocation />
+        element: <PrivateRoute><MapLocation /></PrivateRoute>
+      },
+      {
+        path: "/login",
+        element: <Login />
+      },
+      {
+        path: "/register",
+        element: <Register />
       },
     ]
   },
@@ -29,6 +41,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

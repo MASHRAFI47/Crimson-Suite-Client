@@ -4,7 +4,7 @@ import logo from "../../assets/crimson-suite-logo.png"
 const Header = () => {
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/map'}>Map</NavLink></li>
+        <li><NavLink to={'/map-location'}>Map</NavLink></li>
         <li><NavLink to={'/login'}>Login</NavLink></li>
         <li><NavLink to={'/register'}>Register</NavLink></li>
     </>
