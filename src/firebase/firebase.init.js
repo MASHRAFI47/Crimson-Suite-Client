@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBa_PpXU7b0YadtlwBPOV-PAsSQizA3nGo",
-  authDomain: "crimson-suite.firebaseapp.com",
-  projectId: "crimson-suite",
-  storageBucket: "crimson-suite.appspot.com",
-  messagingSenderId: "221238696711",
-  appId: "1:221238696711:web:0df87a5e89617f82d743a2"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGESENDERID,
+  appId: import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase
