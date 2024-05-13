@@ -18,7 +18,9 @@ const RoomDetails = () => {
     const roomImage = singleRoom.image
     const userEmail = user?.email
     const roomTitle = singleRoom?.room_title
-    const roomBooking = { userEmail, roomTitle, roomImage }
+    const roomDescription = singleRoom?.roomDescription
+    const area = singleRoom?.area
+    const roomBooking = { userEmail, roomTitle, roomImage, roomDescription, area, startDate }
 
 
     // const handleBookNow = () => {
