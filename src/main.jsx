@@ -14,6 +14,7 @@ import Login from './pages/Login/Login.jsx';
 import Register from './pages/Register/Register.jsx';
 import Rooms from './pages/Rooms/Rooms.jsx';
 import RoomDetails from './components/RoomDetails/RoomDetails.jsx';
+import MyBookings from './components/MyBookings/MyBookings.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/rooms",
         element: <Rooms />
+      },
+      {
+        path: "/my-bookings",
+        element: <MyBookings />
       },
       {
         path: "/room-details/:id",

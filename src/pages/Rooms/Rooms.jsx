@@ -27,9 +27,9 @@ const Rooms = () => {
                                         <p> <span className="font-semibold">Area: </span>{room.area}m<sup>2</sup></p>
                                         <p> <span className="font-semibold">Beds:</span> {room.available_beds} beds</p>
                                     </div>
-                                    <div className="card-actions justify-end">
+                                    {/* <div className="card-actions justify-end">
                                         <button className="btn btn-primary">Buy Now</button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </Link>
