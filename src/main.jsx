@@ -12,6 +12,8 @@ import AuthProvider from './providers/AuthProvider/AuthProvider.jsx';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute.jsx';
 import Login from './pages/Login/Login.jsx';
 import Register from './pages/Register/Register.jsx';
+import Rooms from './pages/Rooms/Rooms.jsx';
+import RoomDetails from './components/RoomDetails/RoomDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,15 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path: "/rooms",
+        element: <Rooms />
+      },
+      {
+        path: "/room-details/:id",
+        element: <RoomDetails />,
+        loader: ({params}) => fetch(`http://localhost:4000/rooms/${params.id}`)
       },
     ]
   },
