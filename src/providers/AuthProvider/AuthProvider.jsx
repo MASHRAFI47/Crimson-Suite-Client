@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import PropTypes from 'prop-types';
 import { getAuth } from "firebase/auth";
 import { createContext, useEffect, useState } from "react"
@@ -6,6 +6,8 @@ import app from '../../firebase/firebase.init';
 import axios from 'axios';
 
 const auth = getAuth(app);
+
+const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext(null)
 
@@ -33,8 +35,14 @@ const AuthProvider = ({ children }) => {
                 photoURL: image
             })
         }).catch((error) => {
-           console.log(error.message)
+            console.log(error.message)
         });
+    }
+
+    const signInWithGoogle = () => {
+        setLoading(true)
+        return signInWithPopup(auth, googleProvider)
+
     }
 
     const logOut = async () => {
@@ -54,7 +62,7 @@ const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const authInfo = { user, loading, createUser, updateUserProfile, signInUser, logOut }
+    const authInfo = { user, loading, createUser, updateUserProfile, signInUser, signInWithGoogle, logOut }
 
     return (
         <AuthContext.Provider value={authInfo}>

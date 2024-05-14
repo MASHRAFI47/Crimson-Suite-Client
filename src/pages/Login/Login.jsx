@@ -3,8 +3,15 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import axios from "axios";
 
+//images
+import googleLogo from '../../assets/googleLogo.png'
+import { Link } from "react-router-dom";
+
 const Login = () => {
-    const { signInUser } = useContext(AuthContext)
+    const { user, signInUser, signInWithGoogle } = useContext(AuthContext)
+
+
+    const userEmail = user?.email
 
     const {
         register,
@@ -21,11 +28,23 @@ const Login = () => {
                 axios.post(`http://localhost:4000/jwt`, user, {
                     withCredentials: true
                 })
-                .then(res => console.log(res.data))
+                    .then(res => console.log(res.data))
             })
             .catch(error => {
                 console.log(error.message)
             })
+    }
+
+    const handleGoogleLogIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                console.log(result.user)
+                axios.post(`http://localhost:4000/jwt`, userEmail, {
+                    withCredentials: true
+                })
+                    .then(res => console.log(res.data))
+            })
+            .catch(err => console.log(err.message))
     }
 
     return (
@@ -49,10 +68,15 @@ const Login = () => {
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
                     </div>
+
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Login</button>
                     </div>
                 </form>
+                <div className="form-control px-8 mb-8">
+                    <button className="btn btn-primary" onClick={handleGoogleLogIn}><img src={googleLogo} className="w-4" alt="" />Google Login</button>
+                </div>
+                <p className="text-center mb-10">New User? <Link to={'/register'} className="font-semibold underline">Register Now</Link></p>
             </div>
         </div>
     )

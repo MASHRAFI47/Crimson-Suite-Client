@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext)
@@ -63,6 +64,7 @@ const Register = () => {
                         <button className="btn btn-primary">Register</button>
                     </div>
                 </form>
+                <p className="text-center mb-10">Already a User? <Link to={'/login'} className="font-semibold underline">Login Now</Link></p>
             </div>
         </div>
     )
