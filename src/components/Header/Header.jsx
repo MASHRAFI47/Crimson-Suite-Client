@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router-dom"
 import logo from "../../assets/crimson-suite-logo.png"
+import { useContext } from "react"
+import { AuthContext } from "../../providers/AuthProvider/AuthProvider"
 
 const Header = () => {
+    const {logOut} = useContext(AuthContext)
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/map-location'}>Map</NavLink></li>
@@ -44,7 +47,7 @@ const Header = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li onClick={logOut}><a>Logout</a></li>
                         </ul>
                     </div>
                 </div>

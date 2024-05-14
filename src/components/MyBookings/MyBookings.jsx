@@ -1,17 +1,46 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+// import DatePicker from "react-datepicker";
 
 const MyBookings = () => {
+
     const { user } = useContext(AuthContext)
     const [bookings, setBookings] = useState([])
-
     console.log(bookings)
+    // const [rooms, setRooms] = useState([]);
+
+
+    // const [roomBookings, setRoomBookings] = useState([]);
+    // const [startDate, setStartDate] = useState(new Date());
+
+
+    const url = `http://localhost:4000/myBookings/${user?.email}`;
+
     useEffect(() => {
-        fetch(`http://localhost:4000/roomBookings/${user?.email}`)
+        fetch(url, {
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => setBookings(data))
-    }, [user]);
+    }, [url]);
+
+
+
+    // useEffect(() => {
+    //     fetch('http://localhost:4000/rooms')
+    //         .then(res => res.json())
+    //         .then(data => setRooms(data))
+    // }, []);
+
+
+    // useEffect(() => {
+    //     fetch('http://localhost:4000/roomBookings')
+    //         .then(res => res.json())
+    //         .then(data => setRoomBookings(data))
+    // }, []);
+
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -41,6 +70,13 @@ const MyBookings = () => {
             }
         });
     }
+
+
+    const handleUpdateDate = (id) => {
+        console.log(id)
+    }
+
+
 
     return (
         <div className="container mx-auto">
@@ -75,56 +111,16 @@ const MyBookings = () => {
                                 <td>
                                     {booking?.area ? booking?.area : 0}m<sup>2</sup>
                                 </td>
-                                <td>{new Date(booking?.startDate).toLocaleDateString()}</td>
+                                <td>{new Date(booking?.date).toLocaleDateString()}</td>
                                 <th className="flex gap-3">
                                     {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                    <button className="btn btn-sm btn-success" onClick={() => document.getElementById('my_modal_2').showModal()}>Review</button>
-                                    <dialog id="my_modal_2" className="modal">
-                                        <div className="modal-box">
+                                    <Link to={`/review/${booking._id}`}>
+                                        <button className="btn btn-sm btn-success">Review</button>
+                                    </Link>
 
-
-                                            <form className="card-body">
-                                                <h1 className="text-2xl">Write a review</h1>
-                                                <div className="form-control">
-                                                    <label className="label">
-                                                        <span className="label-text">Username</span>
-                                                    </label>
-                                                    <input type="text" defaultValue={user?.displayName} readOnly placeholder="email" className="input input-bordered font-normal" required />
-                                                </div>
-                                                <div className="form-control">
-                                                    <label className="label">
-                                                        <span className="label-text">Rating</span>
-                                                    </label>
-                                                    <select className="select select-bordered w-full max-w-xs font-normal">
-                                                        <option disabled selected>Rating</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
-
-                                                <div className="form-control">
-                                                <label className="label">
-                                                        <span className="label-text">Comment</span>
-                                                    </label>
-                                                    <textarea className="textarea textarea-bordered font-normal" placeholder="write a comment..."></textarea>
-                                                </div>
-
-
-                                                <div className="form-control mt-6">
-                                                    <button className="btn btn-primary">Add Review</button>
-                                                </div>
-                                            </form>
-
-
-                                        </div>
-                                        <form method="dialog" className="modal-backdrop">
-                                            <button>close</button>
-                                        </form>
-                                    </dialog>
-
+                                    <Link to={`/update-date/${booking._id}`}>
+                                        <button className="btn btn-primary btn-sm" onClick={() => handleUpdateDate(booking._id)}>Update Date</button>
+                                    </Link>
 
                                     <button className="btn btn-error btn-sm" onClick={() => handleDelete(booking._id)}>Cancel</button>
                                 </th>

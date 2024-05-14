@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
     const { signInUser } = useContext(AuthContext)
@@ -13,9 +14,14 @@ const Login = () => {
 
     const onSubmit = (data) => {
         const { email, password } = data;
+        const user = { email }
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
+                axios.post(`http://localhost:4000/jwt`, user, {
+                    withCredentials: true
+                })
+                .then(res => console.log(res.data))
             })
             .catch(error => {
                 console.log(error.message)

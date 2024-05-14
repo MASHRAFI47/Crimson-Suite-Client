@@ -15,6 +15,8 @@ import Register from './pages/Register/Register.jsx';
 import Rooms from './pages/Rooms/Rooms.jsx';
 import RoomDetails from './components/RoomDetails/RoomDetails.jsx';
 import MyBookings from './components/MyBookings/MyBookings.jsx';
+import ReviewPage from './pages/ReviewPage/ReviewPage.jsx';
+import UpdateDate from './components/UpdateDate/UpdateDate.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,12 +46,22 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-bookings",
-        element: <MyBookings />
+        element: <PrivateRoute><MyBookings /></PrivateRoute>
       },
       {
         path: "/room-details/:id",
         element: <RoomDetails />,
         loader: ({params}) => fetch(`http://localhost:4000/rooms/${params.id}`)
+      },
+      {
+        path: "/update-date/:id",
+        element: <UpdateDate />,
+        loader: ({params}) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
+      },
+      {
+        path: "/review/:id",
+        element: <ReviewPage />,
+        loader: ({params}) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
       },
     ]
   },

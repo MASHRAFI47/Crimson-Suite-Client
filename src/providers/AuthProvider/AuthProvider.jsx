@@ -1,8 +1,9 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import PropTypes from 'prop-types';
 import { getAuth } from "firebase/auth";
 import { createContext, useEffect, useState } from "react"
 import app from '../../firebase/firebase.init';
+import axios from 'axios';
 
 const auth = getAuth(app);
 
@@ -36,6 +37,13 @@ const AuthProvider = ({ children }) => {
         });
     }
 
+    const logOut = async () => {
+        await axios(`http://localhost:4000/logout`, {
+            withCredentials: true
+        })
+        return signOut(auth)
+    }
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
@@ -46,7 +54,7 @@ const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const authInfo = { user, loading, createUser, updateUserProfile, signInUser }
+    const authInfo = { user, loading, createUser, updateUserProfile, signInUser, logOut }
 
     return (
         <AuthContext.Provider value={authInfo}>

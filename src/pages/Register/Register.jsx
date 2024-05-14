@@ -1,23 +1,28 @@
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider"
+import axios from "axios"
 
 const Register = () => {
-    const {createUser, updateUserProfile} = useContext(AuthContext)
+    const { createUser, updateUserProfile } = useContext(AuthContext)
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-      } = useForm()
+    } = useForm()
 
-      const onSubmit= (data) => {
-        const {fullName, photoURL, email, password} = data;
+    const onSubmit = (data) => {
+        const { fullName, photoURL, email, password } = data;
+        const user = { email };
         createUser(email, password)
-        .then(() => {
-            updateUserProfile(fullName, photoURL)
-        })
-      }
+            .then(() => {
+                updateUserProfile(fullName, photoURL)
+                axios.post(`http://localhost:4000/jwt`, user, {
+                    withCredentials: true
+                })
+            })
+    }
 
     return (
         <div>
