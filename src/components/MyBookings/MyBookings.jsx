@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 // import DatePicker from "react-datepicker";
 
 const MyBookings = () => {
+    const axiosSecure = useAxiosSecure();
 
     const { user } = useContext(AuthContext)
     const [bookings, setBookings] = useState([])
@@ -19,12 +21,16 @@ const MyBookings = () => {
     const url = `http://localhost:4000/myBookings/${user?.email}`;
 
     useEffect(() => {
-        fetch(url, {
-            credentials: "include"
-        })
-            .then(res => res.json())
-            .then(data => setBookings(data))
-    }, [url]);
+        // fetch(url, {
+        //     credentials: "include"
+        // })
+        //     .then(res => res.json())
+        //     .then(data => setBookings(data))
+
+        axiosSecure.get(url)
+        .then(res => setBookings(res.data))
+            
+    }, [url, axiosSecure]);
 
 
 
@@ -94,7 +100,7 @@ const MyBookings = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            bookings.map(booking => <tr key={booking._id}>
+                            bookings?.map(booking => <tr key={booking._id}>
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">

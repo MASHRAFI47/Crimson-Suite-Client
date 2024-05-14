@@ -1,49 +1,33 @@
-import Swal from "sweetalert2";
+import { toast } from "react-toastify"
 
 const Newsletter = () => {
-    const handleNewsletter = () => {
-        Swal.fire({
-            title: "Submit your Github username",
-            input: "text",
-            inputAttributes: {
-              autocapitalize: "off"
-            },
-            showCancelButton: true,
-            confirmButtonText: "Look up",
-            showLoaderOnConfirm: true,
-            preConfirm: async (login) => {
-              try {
-                const githubUrl = `
-                  https://api.github.com/users/${login}
-                `;
-                const response = await fetch(githubUrl);
-                if (!response.ok) {
-                  return Swal.showValidationMessage(`
-                    ${JSON.stringify(await response.json())}
-                  `);
-                }
-                return response.json();
-              } catch (error) {
-                Swal.showValidationMessage(`
-                  Request failed: ${error}
-                `);
-              }
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
-                title: `${result.value.login}'s avatar`,
-                imageUrl: result.value.avatar_url
-              });
-            }
-          });
-    }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    toast.success("Subscribed to newsletter")
+  }
+
   return (
     <section>
-        <div className="bg-orange-400 h-[15rem] flex justify-center items-center">
-            <button onClick={handleNewsletter} className="btn btn-primary">Subscribe to Newsletter</button>
-        </div>
+      <div className="bg-orange-400 h-[15rem] flex justify-center items-center">
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+        <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>Subscribe To Our Newsletter</button>
+        <dialog id="my_modal_1" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg mb-2">Provide Your Email Address</h3>
+            <form action="" onSubmit={handleSubmit}>
+              <input type="text" placeholder="your email address..." className="input input-bordered w-full max-w-xs" />
+              <input type="submit" className="btn ml-2" value="Submit" />
+            </form>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </div>
     </section>
   )
 }

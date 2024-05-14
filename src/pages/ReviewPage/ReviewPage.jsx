@@ -9,6 +9,7 @@ const ReviewPage = () => {
 
 
     const roomTitleData = reviewData.roomTitle
+    const userImage = user?.photoURL
    
     const {
         register,
@@ -16,9 +17,9 @@ const ReviewPage = () => {
         formState: { errors },
     } = useForm()
     const onSubmit = (data) => {
-        const { username, rating, comment } = data;
+        const { username, rating, comment} = data;
 
-        const newData = {rating, comment, roomTitleData, username}
+        const newData = {rating, comment, roomTitleData, username, userImage}
         // fetch(`http://localhost:4000/rooms/${loadedReview._id}`, {
         //     method: "PUT",
         //     headers: {

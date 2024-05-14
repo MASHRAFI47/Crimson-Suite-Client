@@ -12,12 +12,12 @@ const Rooms = () => {
     }, []);
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mt-20">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {
                     rooms.map(room => <div key={room._id}>
                         <Link to={`/room-details/${room._id}`}>
-                            <div className="card bg-base-100 shadow-xl relative">
+                            <div className="card bg-base-100 shadow-xl border relative">
                                 <figure><img src={room.image} alt={room.title} /></figure>
                                 <div className="badge badge-error font-semibold absolute top-4 left-4">{room.price}$</div>
                                 <div className="card-body">
@@ -27,9 +27,9 @@ const Rooms = () => {
                                         <p> <span className="font-semibold">Area: </span>{room.area}m<sup>2</sup></p>
                                         <p> <span className="font-semibold">Beds:</span> {room.available_beds} beds</p>
                                     </div>
-                                    {/* <div className="card-actions justify-end">
-                                        <button className="btn btn-primary">Buy Now</button>
-                                    </div> */}
+                                    <div className="card-actions justify-end mt-2">
+                                        <button className="btn btn-primary">Book Now</button>
+                                    </div>
                                 </div>
                             </div>
                         </Link>

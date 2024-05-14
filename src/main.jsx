@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/map-location",
-        element: <PrivateRoute><MapLocation /></PrivateRoute>
+        element: <MapLocation />
       },
       {
         path: "/login",
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/rooms",
-        element: <Rooms />
+        element: <Rooms />,
       },
       {
         path: "/my-bookings",
@@ -50,17 +50,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/room-details/:id",
-        element: <RoomDetails />,
+        element: <PrivateRoute><RoomDetails /></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:4000/rooms/${params.id}`)
       },
       {
         path: "/update-date/:id",
-        element: <UpdateDate />,
+        element: <PrivateRoute><UpdateDate /></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
       },
       {
         path: "/review/:id",
-        element: <ReviewPage />,
+        element: <PrivateRoute><ReviewPage /></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
       },
     ]
