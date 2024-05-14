@@ -17,16 +17,22 @@ import RoomDetails from './components/RoomDetails/RoomDetails.jsx';
 import MyBookings from './components/MyBookings/MyBookings.jsx';
 import ReviewPage from './pages/ReviewPage/ReviewPage.jsx';
 import UpdateDate from './components/UpdateDate/UpdateDate.jsx';
+import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
+import AboutPage from './pages/AboutPage/AboutPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: "Error page",
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Home />
+      },
+      {
+        path: "/about-page",
+        element: <AboutPage />
       },
       {
         path: "/map-location",

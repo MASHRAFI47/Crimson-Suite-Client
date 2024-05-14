@@ -3,6 +3,7 @@ import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import moment from "moment/moment";
 // import DatePicker from "react-datepicker";
 
 const MyBookings = () => {
@@ -28,8 +29,8 @@ const MyBookings = () => {
         //     .then(data => setBookings(data))
 
         axiosSecure.get(url)
-        .then(res => setBookings(res.data))
-            
+            .then(res => setBookings(res.data))
+
     }, [url, axiosSecure]);
 
 
@@ -47,6 +48,22 @@ const MyBookings = () => {
     //         .then(data => setRoomBookings(data))
     // }, []);
 
+    // const bookedDate = moment('2024-05-14')
+    // const currentDate = moment();
+    // const oneDayBefore = bookedDate.clone().subtract(1, 'days');
+    // console.log(oneDayBefore)
+
+    // if (currentDate.isBefore(oneDayBefore)) {
+    //     console.log('User can cancel the booking.'); // User can cancel
+    // } else {
+    //     console.log('Cancellation period has expired.'); // Cancellation period has expired
+    // }
+
+    const recentTime = moment().format('L')
+    console.log(recentTime)
+    const bool1 = moment(recentTime)
+        .isBefore('2010-4-12'); // true
+    console.log(bool1);
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -65,7 +82,31 @@ const MyBookings = () => {
                     icon: "success"
                 });
 
+                // const findRoom = bookings.find(booking => booking._id == id);
+                // const bookedDate = moment(new Date(findRoom?.date).toLocaleDateString())
+                // console.log(bookedDate)
+                // const currentDate = moment().format('DD/MM/YYYY');
+                // const currentDate = moment();
+                // console.log(currentDate)
+
+                // const oneDayBefore = bookedDate.clone().subtract(1, 'days');
+                // if(currentDate.isBefore(oneDayBefore)) {
+                //     console.log('user can cancel')
+                // } else {
+                //     console.log('cant')
+                // }
+
+
+                // const mainDate = bookedDate.clone().subtract(1, 'days');
+                // if(currentDate.isBefore(mainDate)) {
+                //     console.log('users can cancel')
+                // } else {
+                //     console.log('cant cancel')
+                // }
+                // console.log(mainDate)
+
                 fetch(`http://localhost:4000/roomBookings/${id}`, {
+                    credentials: 'include',
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -81,6 +122,7 @@ const MyBookings = () => {
     const handleUpdateDate = (id) => {
         console.log(id)
     }
+
 
 
 
@@ -127,7 +169,6 @@ const MyBookings = () => {
                                     <Link to={`/update-date/${booking._id}`}>
                                         <button className="btn btn-primary btn-sm" onClick={() => handleUpdateDate(booking._id)}>Update Date</button>
                                     </Link>
-
                                     <button className="btn btn-error btn-sm" onClick={() => handleDelete(booking._id)}>Cancel</button>
                                 </th>
                             </tr>)

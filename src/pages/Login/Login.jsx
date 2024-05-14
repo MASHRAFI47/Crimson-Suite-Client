@@ -7,6 +7,10 @@ import axios from "axios";
 import googleLogo from '../../assets/googleLogo.png'
 import { Link } from "react-router-dom";
 
+//lottie
+import Lottie from "lottie-react";
+import loginNow from "../../../public/login.json";
+
 const Login = () => {
     const { user, signInUser, signInWithGoogle } = useContext(AuthContext)
 
@@ -47,35 +51,40 @@ const Login = () => {
     }
 
     return (
-        <div className="mb-20">
-            <div className="card shrink-0 w-full max-w-2xl shadow-2xl bg-base-100 border mx-auto">
-                <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input type="email" placeholder="email" className="input input-bordered" {...register("email", { required: true })} />
-                        {errors.email && <span className="text-red-600">This field is required</span>}
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                        </label>
-                        <input type="password" placeholder="password" className="input input-bordered" {...register("password", { required: true })} />
-                        {errors.password && <span className="text-red-600">This field is required</span>}
-                        <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                        </label>
-                    </div>
+        <div className="mb-20 grid grid-cols-1 md:grid-cols-2 items-center container mx-auto">
+            <div>
+                <Lottie animationData={loginNow} loop={true} />
+            </div>
+            <div className="">
+                <div className="card shrink-0 w-full max-w-2xl shadow-2xl bg-base-100 border mx-auto">
+                    <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" placeholder="email" className="input input-bordered" {...register("email", { required: true })} />
+                            {errors.email && <span className="text-red-600">This field is required</span>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input type="password" placeholder="password" className="input input-bordered" {...register("password", { required: true })} />
+                            {errors.password && <span className="text-red-600">This field is required</span>}
+                            <label className="label">
+                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            </label>
+                        </div>
 
-                    <div className="form-control mt-6">
-                        <button className="btn btn-primary">Login</button>
+                        <div className="form-control mt-6">
+                            <button className="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    <div className="form-control px-8 mb-8">
+                        <button className="btn btn-primary" onClick={handleGoogleLogIn}><img src={googleLogo} className="w-4" alt="" />Google Login</button>
                     </div>
-                </form>
-                <div className="form-control px-8 mb-8">
-                    <button className="btn btn-primary" onClick={handleGoogleLogIn}><img src={googleLogo} className="w-4" alt="" />Google Login</button>
+                    <p className="text-center mb-10">New User? <Link to={'/register'} className="font-semibold underline">Register Now</Link></p>
                 </div>
-                <p className="text-center mb-10">New User? <Link to={'/register'} className="font-semibold underline">Register Now</Link></p>
             </div>
         </div>
     )

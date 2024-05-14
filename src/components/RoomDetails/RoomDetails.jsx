@@ -98,6 +98,7 @@ const RoomDetails = () => {
                                             <span className="font-semibold">Book Date: </span><DatePicker className="border border-gray-400 pl-2 rounded-md"
                                                 showIcon
                                                 selected={startDate}
+                                                // dateFormat="MM/dd/yy"
                                                 onChange={(date) => setStartDate(date)}
                                                 icon={
                                                     <svg

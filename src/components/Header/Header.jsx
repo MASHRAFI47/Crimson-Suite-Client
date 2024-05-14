@@ -18,6 +18,7 @@ const Header = () => {
 
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/about-page'}>About</NavLink></li>
         <li><NavLink to={'/rooms'}>Rooms</NavLink></li>
         {
             user ? <li><NavLink to={'/my-bookings'}>My Bookings</NavLink></li> : ""

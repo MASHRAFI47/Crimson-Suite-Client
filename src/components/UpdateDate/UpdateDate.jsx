@@ -11,21 +11,34 @@ const UpdateDate = () => {
     const [startDate, setStartDate] = useState(new Date());
 
     const updatedDate = {startDate};
+    
+    const url = `http://localhost:4000/roomBookings/${singleData._id}`;
 
     const {
         handleSubmit,
     } = useForm()
     const onSubmit = () => {
-        fetch(`http://localhost:4000/roomBookings/${singleData._id}`, {
+        fetch(url, {
+            credentials: 'include',
             method: "PATCH",
             headers: {
-                'content-type':'application/json'
+                'Content-type' : 'application/json'
             },
-            body:JSON.stringify(updatedDate)
+            body: JSON.stringify(updatedDate)
         })
         .then(res => res.json())
         .then(data => console.log(data))
+
     }
+
+    // useEffect(() => {
+    //     const getData = async() => {
+    //         await axios.patch(url, {
+    //             updatedDate
+    //         })
+    //     }
+    //     getData()
+    // }, [url, updatedDate]);
 
 
 
@@ -36,6 +49,7 @@ const UpdateDate = () => {
                     <span className="font-semibold">Book Date: </span><DatePicker className="border border-gray-400 pl-2 rounded-md"
                         showIcon
                         selected={startDate}
+                        minDate={new Date()}
                         // {...register("datePick", { required: true })}
                         onChange={(date) => setStartDate(date)}
                         icon={
