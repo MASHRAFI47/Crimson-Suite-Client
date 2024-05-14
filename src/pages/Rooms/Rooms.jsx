@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react"
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([])
-    console.log(rooms)
 
     useEffect(() => {
-        fetch('http://localhost:4000/rooms')
+        fetch(`http://localhost:4000/rooms`)
             .then(res => res.json())
             .then(data => setRooms(data))
     }, []);
 
     return (
         <div className="container mx-auto mt-20">
+            <Helmet>
+                <title>Rooms | Crimson Suite</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {
-                    rooms.map(room => <div key={room._id}>
+                    rooms.map(room => <div data-aos="fade-in" key={room._id}>
                         <Link to={`/room-details/${room._id}`}>
                             <div className="card bg-base-100 shadow-xl border relative">
                                 <figure><img src={room.image} alt={room.title} /></figure>

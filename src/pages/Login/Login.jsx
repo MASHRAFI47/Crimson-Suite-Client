@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 //lottie
 import Lottie from "lottie-react";
 import loginNow from "../../../public/login.json";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { user, signInUser, signInWithGoogle } = useContext(AuthContext)
@@ -52,6 +53,9 @@ const Login = () => {
 
     return (
         <div className="mb-20 grid grid-cols-1 md:grid-cols-2 items-center container mx-auto">
+            <Helmet>
+                <title>Login | Crimson Suite</title>
+            </Helmet>
             <div>
                 <Lottie animationData={loginNow} loop={true} />
             </div>

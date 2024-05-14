@@ -19,6 +19,7 @@ import ReviewPage from './pages/ReviewPage/ReviewPage.jsx';
 import UpdateDate from './components/UpdateDate/UpdateDate.jsx';
 import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -57,17 +58,17 @@ const router = createBrowserRouter([
       {
         path: "/room-details/:id",
         element: <PrivateRoute><RoomDetails /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:4000/rooms/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:4000/rooms/${params.id}`)
       },
       {
         path: "/update-date/:id",
         element: <PrivateRoute><UpdateDate /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
       },
       {
         path: "/review/:id",
         element: <PrivateRoute><ReviewPage /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
       },
     ]
   },
@@ -76,7 +77,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </AuthProvider>
   </React.StrictMode>,
 )

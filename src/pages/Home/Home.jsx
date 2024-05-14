@@ -4,6 +4,7 @@ import MapLocation from "./MapLocation/MapLocation"
 import Newsletter from "./Newsletter/Newsletter"
 import Rooms from "../Rooms/Rooms"
 import Reviews from "./Reviews/Reviews"
+import { Helmet } from "react-helmet-async"
 
 const Home = () => {
   const btnRef = useRef(null)
@@ -16,6 +17,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Home | Crimson Suite</title>
+      </Helmet>
       <button className="btn hidden" ref={btnRef} onClick={() => document.getElementById('my_modal_2').showModal()}>open modal</button>
       <dialog id="my_modal_2" className="modal">
         <div className="modal-box">

@@ -1,10 +1,14 @@
 //lottie
 import Lottie from "lottie-react";
 import about from "../../../public/about.json";
+import { Helmet } from "react-helmet-async";
 
 const AboutPage = () => {
     return (
         <div className="container mx-auto">
+            <Helmet>
+                <title>About | Crimson Suite</title>
+            </Helmet>
             <div className="grid grid-cols-1 md:grid-cols-2 items-center">
                 <div>
                     <Lottie animationData={about} loop={true} />

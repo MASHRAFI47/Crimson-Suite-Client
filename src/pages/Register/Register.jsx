@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext)
@@ -27,6 +28,9 @@ const Register = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Register | Crimson Suite</title>
+            </Helmet>
             <div className="card shrink-0 w-full max-w-2xl shadow-2xl bg-base-100 mx-auto border">
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control">

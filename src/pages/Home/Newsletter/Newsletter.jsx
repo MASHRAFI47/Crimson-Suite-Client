@@ -8,7 +8,7 @@ const Newsletter = () => {
   }
 
   return (
-    <section>
+    <section data-aos="slide-up">
       <div className="bg-orange-400 h-[15rem] flex justify-center items-center">
         {/* Open the modal using document.getElementById('ID').showModal() method */}
         <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>Subscribe To Our Newsletter</button>

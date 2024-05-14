@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import moment from "moment/moment";
+import { Helmet } from "react-helmet-async";
 // import DatePicker from "react-datepicker";
 
 const MyBookings = () => {
@@ -128,6 +129,9 @@ const MyBookings = () => {
 
     return (
         <div className="container mx-auto">
+            <Helmet>
+                <title>My Bookings | Crimson Suite</title>
+            </Helmet>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
