@@ -33,7 +33,7 @@ const RoomDetails = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:4000/reviews')
+        fetch('https://crimson-suite-server.vercel.app/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, []);
@@ -41,7 +41,7 @@ const RoomDetails = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:4000/roomBookings")
+        fetch("https://crimson-suite-server.vercel.app/roomBookings")
             .then(res => res.json())
             .then(data => setRoomBookings(data))
     }, []);
@@ -49,7 +49,7 @@ const RoomDetails = () => {
     const handleConfirm = () => {
         toast.success("Room has been booked")
 
-        fetch(`http://localhost:4000/roomBookings`, {
+        fetch(`https://crimson-suite-server.vercel.app/roomBookings`, {
             credentials: 'include',
             method: "POST",
             headers: {

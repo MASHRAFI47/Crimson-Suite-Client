@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const logOut = async () => {
-        await axios(`http://localhost:4000/logout`, {
+        await axios(`https://crimson-suite-server.vercel.app/logout`, {
             withCredentials: true
         })
         return signOut(auth)

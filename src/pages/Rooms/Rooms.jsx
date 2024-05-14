@@ -6,7 +6,7 @@ const Rooms = () => {
     const [rooms, setRooms] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:4000/rooms`)
+        fetch(`https://crimson-suite-server.vercel.app/rooms`)
             .then(res => res.json())
             .then(data => setRooms(data))
     }, []);

@@ -58,17 +58,17 @@ const router = createBrowserRouter([
       {
         path: "/room-details/:id",
         element: <PrivateRoute><RoomDetails /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:4000/rooms/${params.id}`)
+        loader: ({ params }) => fetch(`https://crimson-suite-server.vercel.app/rooms/${params.id}`)
       },
       {
         path: "/update-date/:id",
         element: <PrivateRoute><UpdateDate /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
+        loader: ({ params }) => fetch(`https://crimson-suite-server.vercel.app/roomBookings/${params.id}`)
       },
       {
         path: "/review/:id",
         element: <PrivateRoute><ReviewPage /></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:4000/roomBookings/${params.id}`)
+        loader: ({ params }) => fetch(`https://crimson-suite-server.vercel.app/roomBookings/${params.id}`)
       },
     ]
   },

@@ -29,7 +29,7 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result.user)
-                axios.post(`http://localhost:4000/jwt`, user, {
+                axios.post(`https://crimson-suite-server.vercel.app/jwt`, user, {
                     withCredentials: true
                 })
                     .then(res => console.log(res.data))
@@ -43,7 +43,7 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
-                axios.post(`http://localhost:4000/jwt`, userEmail, {
+                axios.post(`https://crimson-suite-server.vercel.app/jwt`, userEmail, {
                     withCredentials: true
                 })
                     .then(res => console.log(res.data))

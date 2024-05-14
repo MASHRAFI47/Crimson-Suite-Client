@@ -20,7 +20,7 @@ const MyBookings = () => {
     // const [startDate, setStartDate] = useState(new Date());
 
 
-    const url = `http://localhost:4000/myBookings/${user?.email}`;
+    const url = `https://crimson-suite-server.vercel.app/myBookings/${user?.email}`;
 
     useEffect(() => {
         // fetch(url, {
@@ -37,14 +37,14 @@ const MyBookings = () => {
 
 
     // useEffect(() => {
-    //     fetch('http://localhost:4000/rooms')
+    //     fetch('https://crimson-suite-server.vercel.app/rooms')
     //         .then(res => res.json())
     //         .then(data => setRooms(data))
     // }, []);
 
 
     // useEffect(() => {
-    //     fetch('http://localhost:4000/roomBookings')
+    //     fetch('https://crimson-suite-server.vercel.app/roomBookings')
     //         .then(res => res.json())
     //         .then(data => setRoomBookings(data))
     // }, []);
@@ -78,8 +78,8 @@ const MyBookings = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "Cancelled!",
+                    text: "Your booking has been cancelled",
                     icon: "success"
                 });
 
@@ -106,7 +106,7 @@ const MyBookings = () => {
                 // }
                 // console.log(mainDate)
 
-                fetch(`http://localhost:4000/roomBookings/${id}`, {
+                fetch(`https://crimson-suite-server.vercel.app/roomBookings/${id}`, {
                     credentials: 'include',
                     method: "DELETE",
                 })
@@ -146,7 +146,7 @@ const MyBookings = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            bookings?.map(booking => <tr key={booking._id}>
+                            bookings?.map(booking => <tr key={booking?._id}>
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">

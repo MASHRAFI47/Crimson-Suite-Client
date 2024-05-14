@@ -20,7 +20,7 @@ const Register = () => {
         createUser(email, password)
             .then(() => {
                 updateUserProfile(fullName, photoURL)
-                axios.post(`http://localhost:4000/jwt`, user, {
+                axios.post(`https://crimson-suite-server.vercel.app/jwt`, user, {
                     withCredentials: true
                 })
             })

@@ -2,25 +2,26 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ReviewPage = () => {
     const reviewData = useLoaderData();
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
 
     const roomTitleData = reviewData.roomTitle
     const userImage = user?.photoURL
-   
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
     const onSubmit = (data) => {
-        const { username, rating, comment} = data;
+        const { username, rating, comment } = data;
 
-        const newData = {rating, comment, roomTitleData, username, userImage}
-        // fetch(`http://localhost:4000/rooms/${loadedReview._id}`, {
+        const newData = { rating, comment, roomTitleData, username, userImage }
+        // fetch(`https://crimson-suite-server.vercel.app/rooms/${loadedReview._id}`, {
         //     method: "PUT",
         //     headers: {
         //         'Content-type': 'application/json'
@@ -29,16 +30,24 @@ const ReviewPage = () => {
         // })
         //     .then(res => res.json())
         //     .then(data => console.log(data))
-        fetch('http://localhost:4000/reviews', {
+        fetch('https://crimson-suite-server.vercel.app/reviews', {
             method: "POST",
             headers: {
-                'content-type':'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(newData)
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Review Posted Successfully",
+                        icon: "success"
+                    });
+                }
+            })
+
     }
     return (
         <div>

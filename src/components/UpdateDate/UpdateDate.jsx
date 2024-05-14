@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const UpdateDate = () => {
 
     const singleData = useLoaderData();
     const [startDate, setStartDate] = useState(new Date());
+    const navigate = useNavigate();
 
-    const updatedDate = {startDate};
-    
-    const url = `http://localhost:4000/roomBookings/${singleData._id}`;
+    const updatedDate = { startDate };
+
+    const url = `https://crimson-suite-server.vercel.app/roomBookings/${singleData._id}`;
 
     const {
         handleSubmit,
@@ -22,12 +24,21 @@ const UpdateDate = () => {
             credentials: 'include',
             method: "PATCH",
             headers: {
-                'Content-type' : 'application/json'
+                'Content-type': 'application/json'
             },
             body: JSON.stringify(updatedDate)
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Date Updated",
+                        icon: "success"
+                    });
+                    navigate('/')
+                }
+            })
 
     }
 
