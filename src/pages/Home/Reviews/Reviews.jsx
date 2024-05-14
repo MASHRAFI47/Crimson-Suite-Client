@@ -19,7 +19,7 @@ const Reviews = () => {
             .then(data => setReviews(data))
     }, []);
     return (
-        <section className="container mx-auto">
+        <section className="container mx-auto mb-20">
             <>
                 <Swiper
                     spaceBetween={30}

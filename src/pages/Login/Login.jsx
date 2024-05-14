@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 const Login = () => {
     const { user, signInUser, signInWithGoogle } = useContext(AuthContext)
 
-
     const userEmail = user?.email
 
     const {
@@ -48,7 +47,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="mb-20">
             <div className="card shrink-0 w-full max-w-2xl shadow-2xl bg-base-100 border mx-auto">
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control">
