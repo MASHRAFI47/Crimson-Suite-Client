@@ -1,7 +1,7 @@
 
 # Crimson Suite
 
-## Live Link: Here goes the website live link: [Crimson_Suite](https://travel-vania.web.app/)
+## Live Link: Here goes the website live link: [Crimson_Suite](https://crimson-suite.web.app/)
 
 
  - You can see your desired hotels
