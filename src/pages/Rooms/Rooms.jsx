@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([])
+    const [reviews, setReviews] = useState([])
+    console.log(reviews)
+
+    useEffect(() => {
+        fetch(`https://crimson-suite-server.vercel.app/reviewRooms`)
+        .then(res => res.json())
+        .then(data => setReviews(data))
+    }, []);
 
     useEffect(() => {
         fetch(`https://crimson-suite-server.vercel.app/rooms`, {
@@ -15,6 +23,7 @@ const Rooms = () => {
 
     return (
         <div className="container mx-auto mt-20">
+            {/* <h2>Total Reviews: {reviews.length} </h2> */}
             <Helmet>
                 <title>Rooms | Crimson Suite</title>
             </Helmet>

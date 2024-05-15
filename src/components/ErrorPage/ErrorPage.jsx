@@ -1,9 +1,18 @@
 import Lottie from "lottie-react";
 import errorLot from "../../../public/404error.json";
+import { useNavigate } from "react-router-dom";
 
 const ErrorPage = () => {
+  const navigate = useNavigate()
+
+  const handleBack = () => {
+    navigate(-1)
+  }
   return (
-    <div><Lottie animationData={errorLot} loop={true} /></div>
+    <div>
+      <button className="btn" onClick={handleBack}>Back Now</button>
+      <div><Lottie animationData={errorLot} loop={true} /></div>
+    </div>
   )
 }
 
