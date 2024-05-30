@@ -42,6 +42,7 @@ const RoomDetails = () => {
     console.log(coupon)
     const handleChange = e => {
         if (e.target.value === "Couple20") {
+            toast.success("Coupon code applied")
             setCoupon(true)
             setDiscountPrice(singleRoom.price * 20 / 100);
         }
