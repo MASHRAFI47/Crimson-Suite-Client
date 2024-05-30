@@ -12,7 +12,6 @@ const MyBookings = () => {
 
     const { user } = useContext(AuthContext)
     const [bookings, setBookings] = useState([])
-    console.log(bookings)
     // const [rooms, setRooms] = useState([]);
 
 
@@ -138,6 +137,7 @@ const MyBookings = () => {
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Price</th>
                             <th>Area</th>
                             <th>Booking</th>
                             <th>Action</th>
@@ -159,6 +159,11 @@ const MyBookings = () => {
                                             <div className="text-sm opacity-50">United States</div>
                                         </div>
                                     </div>
+                                </td>
+                                <td>
+                                    {
+                                        booking?.discountPrice ? "$" + (booking?.price - booking?.discountPrice) : "$" + (booking?.price)
+                                    }
                                 </td>
                                 <td>
                                     {booking?.area ? booking?.area : 0}m<sup>2</sup>

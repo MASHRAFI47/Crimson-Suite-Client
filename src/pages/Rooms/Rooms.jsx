@@ -9,8 +9,8 @@ const Rooms = () => {
 
     useEffect(() => {
         fetch(`https://crimson-suite-server.vercel.app/reviewRooms`)
-        .then(res => res.json())
-        .then(data => setReviews(data))
+            .then(res => res.json())
+            .then(data => setReviews(data))
     }, []);
 
     useEffect(() => {
@@ -41,6 +41,8 @@ const Rooms = () => {
                                         <p> <span className="font-semibold">Area: </span>{room.area}m<sup>2</sup></p>
                                         <p> <span className="font-semibold">Beds:</span> {room.available_beds} beds</p>
                                     </div>
+
+
                                     <div className="card-actions justify-end mt-2">
                                         <button className="btn btn-primary">Book Now</button>
                                     </div>
